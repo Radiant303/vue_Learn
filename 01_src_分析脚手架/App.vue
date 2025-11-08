@@ -1,0 +1,24 @@
+<template>
+    <div>
+        <img src="./assets/logo.png" alt="">
+        <MySchool></MySchool>
+        <MyStudent></MyStudent>
+    </div>
+</template>
+
+<script>
+//引入组件
+import MySchool from './components/MySchool.vue';
+import MyStudent from './components/MyStudent.vue';
+export default {
+    name:'App',
+    template:`<App></App>`,
+    components:{
+        MySchool,
+        MyStudent
+    }
+
+}  
+</script>
+ 
+<style scoped></style>

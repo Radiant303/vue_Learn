@@ -1,8 +1,8 @@
 <template>
   <div>
-    <MySchool />
-    <hr/>
-    <MyStudent />
+    <MySchool name="李四"/>
+    <hr />
+    <MyStudent name="王老五" :age="20"/>
   </div>
 </template>
 
@@ -15,8 +15,9 @@ export default {
     MyStudent,
     MySchool
   },
+  methods: {},
 };
 </script>
 
 <style>
-</style> 
+</style>
