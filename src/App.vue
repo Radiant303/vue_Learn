@@ -4,8 +4,16 @@
       <div class="todo-container">
         <div class="todo-wrap">
           <PageHeader :receive="receive"></PageHeader>
-          <PageList :todos="todos" :checkTodo="checkTodo" :deleteTodo="deleteTodo"></PageList>
-          <PageFooter :todos="todos" :checkAllTodo="checkAllTodo" :clearAllTodo="clearAllTodo"></PageFooter>
+          <PageList
+            :todos="todos"
+            :checkTodo="checkTodo"
+            :deleteTodo="deleteTodo"
+          ></PageList>
+          <PageFooter
+            :todos="todos"
+            :checkAllTodo="checkAllTodo"
+            :clearAllTodo="clearAllTodo"
+          ></PageFooter>
         </div>
       </div>
     </div>
@@ -13,6 +21,7 @@
 </template>
 
 <script>
+import { watch } from "vue";
 import PageFooter from "./components/PageFooter.vue";
 import PageHeader from "./components/PageHeader.vue";
 import PageList from "./components/PageList.vue";
@@ -20,42 +29,48 @@ import PageList from "./components/PageList.vue";
 export default {
   name: "App",
   components: { PageFooter, PageHeader, PageList },
-  data(){
+  data() {
     return {
-        todos:[
-            {id:"001",title:"吃饭",done:true},
-            {id:"002",title:"喝酒",done:false},
-            {id:"003",title:"开车",done:true}
-        ]
-    }
-},
-methods:{
+      todos: localStorage.getItem("todos")
+        ? JSON.parse(localStorage.getItem("todos"))
+        : [],
+    };
+  },
+  methods: {
     //添加一个todo
-    receive(todo){
-        this.todos.unshift(todo)
+    receive(todo) {
+      this.todos.unshift(todo);
     },
     //勾选or取消勾选一个todo
-    checkTodo(id){
-        this.todos.forEach((todo)=>{
-            if(todo.id === id) todo.done = !todo.done
-        })
+    checkTodo(id) {
+      this.todos.forEach((todo) => {
+        if (todo.id === id) todo.done = !todo.done;
+      });
     },
-    deleteTodo(id){
-        this.todos = this.todos.filter((todo)=>{
-            return todo.id != id
-        })
+    deleteTodo(id) {
+      this.todos = this.todos.filter((todo) => {
+        return todo.id != id;
+      });
     },
-    checkAllTodo(done){
-        this.todos.forEach((todo)=>{
-            todo.done = done
-        })
+    checkAllTodo(done) {
+      this.todos.forEach((todo) => {
+        todo.done = done;
+      });
     },
-    clearAllTodo(){
-        this.todos = this.todos.filter((todo)=>{
-            return !todo.done
-        })
-    }
-}
+    clearAllTodo() {
+      this.todos = this.todos.filter((todo) => {
+        return !todo.done;
+      });
+    },
+  },
+  watch: {
+    todos: {
+      deep: true,
+      handler(value) {
+        localStorage.setItem("todos", JSON.stringify(value));
+      },
+    },
+  },
 };
 </script>
 
@@ -104,7 +119,6 @@ body {
   border-radius: 5px;
 }
 
-
 /*main*/
 .todo-main {
   margin-left: 0px;
@@ -121,6 +135,4 @@ body {
   padding-left: 5px;
   margin-top: 10px;
 }
-
-
 </style> 
