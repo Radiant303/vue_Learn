@@ -3,7 +3,9 @@
        <PageItem 
             v-for="item in todos" 
             :key="item.id"
-            :todo="item">
+            :todo="item"
+            :checkTodo="checkTodo"
+            :deleteTodo="deleteTodo">
         </PageItem>
     </ul>
 </template>
@@ -13,7 +15,7 @@ import PageItem from './PageItem.vue';
 export default {
 name:"PageList",
 components:{PageItem},
-props:['todos']
+props:['todos','checkTodo','deleteTodo']
 }
 </script>
 

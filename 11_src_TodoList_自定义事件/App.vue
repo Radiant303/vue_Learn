@@ -6,6 +6,8 @@
           <PageHeader @receive="receive"></PageHeader>
           <PageList
             :todos="todos"
+            :checkTodo="checkTodo"
+            :deleteTodo="deleteTodo"
           ></PageList>
           <PageFooter
             :todos="todos"
@@ -69,14 +71,6 @@ export default {
       },
     },
   },
-  mounted(){
-    this.$bus.$on('checkTodo',this.checkTodo)
-    this.$bus.$on('deleteTodo',this.deleteTodo)
-  },
-  beforeDestroy(){
-    this.$bus.$off('checkTodo')
-    this.$bus.$off('deleteTodo')
-  }
 };
 </script>
 
