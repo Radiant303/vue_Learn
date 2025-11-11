@@ -1,7 +1,8 @@
 <template>
-  <div class="demo">
-    <h2 class="qwe">学校名称:{{ name }}</h2>
+  <div class="school">
+    <h2>学校名称:{{ name }}</h2>
     <h2>地址:{{ address }}</h2>
+    <button @click="sendSchoolName">发送学校名字到App</button>
   </div>
 </template>
 
@@ -16,6 +17,12 @@ export default {
         address:"北京市"
     };
   },
+  props:["getSchoolName"],
+  methods:{
+    sendSchoolName(){
+        this.getSchoolName(this.name)
+    }
+  }
 
 
 
@@ -23,10 +30,8 @@ export default {
 </script>
 
 <style lang="less" scoped>
-    .demo{
+    .school{
         background-color: pink;
-        .qwe{
-            font-size: 40px;
-        }
+        padding: 5px;
     }
 </style>
