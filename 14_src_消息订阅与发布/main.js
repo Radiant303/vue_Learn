@@ -14,4 +14,4 @@ new Vue({
     }
 })
 
-window.Vue = Vue
+window.Vue = Vue // 把Vue挂载到window对象上，方便在控制台调试
