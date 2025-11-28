@@ -1,33 +1,33 @@
 <template>
-    <div class="container">
-        <CategoryComponent title="游戏">
-           <template scope="atguigu">
-            <ul>
-                <li v-for="(item, index) in atguigu.youxi" :key="index">{{ item }}</li>
-            </ul>
-            </template>
-        </CategoryComponent>
-        <CategoryComponent title="游戏">
-            <template scope="atguigu">
-            <ol>
-                <li style="color: red;" v-for="(item, index) in atguigu.youxi" :key="index">{{ item }}</li>
-            </ol>
-            </template>
-        </CategoryComponent>
-        <CategoryComponent title="游戏">
-            <template scope="atguigu">
-                <h4 v-for="(item, index) in atguigu.youxi" :key="index">{{ item }}</h4>
-            </template>
-        </CategoryComponent>
+  <div>
+    <div class="row">
+        <banner></banner>
     </div>
+    <div class="row">
+      <div class="col-xs-2 col-xs-offset-2">
+        <div class="list-group">
+          <router-link class="list-group-item" active-class="active" to="/about">About</router-link>
+          <router-link class="list-group-item" active-class="active" to="/home">Home</router-link>
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <div class="panel">
+          <div class="panel-body">
+            <router-view></router-view>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
-import CategoryComponent from './components/Category.vue'
+import Banner from "@/components/Banner.vue"
+
 export default {
     name: "App",
     components: {
-        CategoryComponent
+        banner:Banner
     },
     data() {
         return {
@@ -39,17 +39,5 @@ export default {
 </script>
 
 <style>
-.container {
-    display: flex;
-    justify-content: space-between;
-}
 
-.footer {
-    display: flex;
-    justify-content: space-between;
-}
-
-h4 {
-    text-align: center;
-}
 </style>

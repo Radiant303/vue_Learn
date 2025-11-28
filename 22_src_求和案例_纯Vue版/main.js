@@ -1,16 +1,21 @@
 import Vue from "vue";
 import App from "./App.vue";
-import VueRouter from "vue-router"
-import router from "@/router/index.js"
+import vueResource from "vue-resource"
+
 //关闭Vue生产提示
 Vue.config.productionTip = false
 
-Vue.use(VueRouter)
+// 安装vue-resource插件
+Vue.use(vueResource)
+
+
 
 new Vue({
     el:"#app",
     render: h => h(App),
-    router
+    beforeCreate(){
+        Vue.prototype.$bus = this
+    }
 })
 
 window.Vue = Vue
